@@ -1,0 +1,69 @@
+<% content_for :header do -%>
+ 	<%= t('.title', :login => @user.login) %></em>
+<% end -%>
+
+<% content_for :sidebar do -%>
+
+<h2><%= t('.status', :status => @user.state.to_s.humanize) %></h2>	
+
+<ul>
+	<% if @user.pending? -%>
+		<li><%= link_to t('admin.users.options.activate'), activate_admin_user_url(@user), :method => :put %></li>
+		<li><%= link_to t('admin.users.options.suspend'), suspend_admin_user_url(@user), :method => :put %></li>
+		<li><%= link_to t('admin.users.options.delete'), admin_user_url(@user), :method => :delete %></li>
+	<% end -%>
+	
+	<% if @user.suspended? -%>
+		<li><%= link_to t('admin.users.options.suspend'), unsuspend_admin_user_url(@user), :method => :put %></li>
+	<% end -%>
+
+	<% if @user.active? -%>
+		<li><%= link_to t('admin.users.options.suspend'), suspend_admin_user_url(@user), :method => :put %></li>
+		<li><%= link_to t('admin.users.options.delete'), admin_user_url(@user), :method => :delete, :confirm => "Are you sure you want to delete this account?" %></li>
+	<% end -%>
+	
+	<% # TODO: Uncomment to enable user purging by the administrator %>
+	<!--
+	<% if @user.deleted? -%>
+		<li><%= link_to "Purge", purge_admin_user_url(@user), :method => :delete, :confirm => "Are you sure you want to remove this account, and all data associated with it from base_app?" %></li>
+	<% end -%>
+    -->
+</ul>	
+
+<h2><%= t('admin.users.options.roles') %></h2>	
+
+<ul>
+	<% Role.all.each do |x| -%>
+		<li>
+		<%= link_to (@user.has_real_role?(x.name.underscore.to_sym) ? t('.take', :role => x.name.humanize.gsub(/-/, ' ')) : t('.grant', :role => x.name.humanize.gsub(/-/, ' '))), toggle_role_admin_user_path(@user, x.name), :method => :post %>
+		</li>
+	<% end -%>
+</ul>
+<% end -%>
+
+<table class="overview">
+  <% if @user.login.present? %>
+  	<%= cell t('activerecord.attributes.user.login'), "#{in_place_editor_field :user, 'login'}" %>
+  <% else %>
+    <%= cell t('activerecord.attributes.user.language'), h(@user.site_name) %>
+  <% end %>
+	<%= cell "ID", h(@user.id) %>
+	<%= cell t('activerecord.attributes.user.language'), h(@user.language) %>
+	<%= cell t('activerecord.attributes.user.facebook'), (t('misc.words.yes') if @user.facebook?) %>
+
+	<%= cell t('activerecord.attributes.user.roles'), @user.roles.map{|x| x.name.humanize }.join(", ") %>
+	
+
+	<%= cell_separator %>
+	
+	<%= cell t('activerecord.attributes.user.email'), "#{in_place_editor_field :user, 'email'}" %>
+	<%= cell t('activerecord.attributes.user.password'), "#{"*"*8} <small>#{link_to_if !@user.deleted?, t('admin.users.options.send_password'), reset_password_admin_user_url(@user), :method => :put}</small>" %>
+	
+	<%= cell_separator %>
+	
+	<%= cell t('activerecord.attributes.user.created_at'), l(@user.created_at, :format => :long) %>
+	<%= cell t('activerecord.attributes.user.updated_at'), l(@user.updated_at, :format => :long) %>
+</table>
+
+<%= link_to t('manage.edit'), edit_admin_user_path(@user) %> |
+<%= link_to t('back'), admin_users_path %>

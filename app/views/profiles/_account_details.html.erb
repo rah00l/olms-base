@@ -1,0 +1,22 @@
+<h3><%= t('site.profile.details') %></h3>
+<table class="overview">
+	<%= cell "Login", "#{@user.login.present? ? h(@user.login) : link_to(t('site.profile.actions.set_login'), set_login_user_url(@user))}" %>
+	
+	<% if ! @user.not_using_openid? %>
+	<%= cell "OpenID URL", h(@user.identity_url) %>
+	<% end %>
+	
+	<%= cell_separator %>
+	
+	<% change_email_text = @user.not_using_openid? ? " <small>#{link_to t('site.profile.actions.update_email'), edit_email_user_url(@user)}</small>" : "" %>
+	
+	<%= cell t('site.profile.attributes.email'), "#{h(@user.email)}#{change_email_text}" %>
+	<% if @user.not_using_openid? %>
+	<%= cell t('site.profile.attributes.password'), "#{"*"*8} <small>#{link_to t('site.profile.actions.change_password'), edit_password_user_url(@user)}</small>" %>
+	<% end %>
+	
+	<%= cell_separator %>
+	
+	<%= cell t('site.profile.attributes.created_at'), @user.created_at.to_s(:long) %>
+	<%= cell t('site.profile.attributes.updated_at'), @user.updated_at.to_s(:long) %>
+</table>

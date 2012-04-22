@@ -1,0 +1,11 @@
+<% content_for :header do -%>
+	<%= configatron.site_name %> <%= t('admin.options.administration')%>
+<% end -%>
+
+<% content_for :sidebar do -%>
+	<%= render :partial => 'admin/dashboard/sidebar' %>
+<% end -%>
+
+<h3><%= t('admin.dashboard.about.title')%>. </h3>
+
+<p><%= t('admin.dashboard.about.text')%>.</p>

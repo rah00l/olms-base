@@ -1,0 +1,15 @@
+<% content_for :header do -%>
+  <%= t('site.profile.actions.set_login')%>
+<% end -%>
+
+<%= form_for @user, :url => update_login_user_url(@user), :html => {:method => :put} do |f| %>
+
+	<h3><%= t('site.profile.login.new')%></h3>
+
+	<p><%= t('site.profile.login.text')%></p>
+
+	<p><%= text_field_tag 'login', '', :size => 20 %></p>
+
+	<p><%= submit_tag t('site.profile.login.set') %> <%= t('words.or')%> <%= link_to t('manage.forget_about_it'), profile_url(@user) %></p>
+	
+<% end %>

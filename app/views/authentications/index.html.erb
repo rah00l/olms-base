@@ -1,0 +1,36 @@
+<% content_for :header do -%>
+	<%= t('site.login.title')%>
+<% end -%>
+
+<% if @authentications %>
+  <% unless @authentications.empty? %>
+    <p><strong><%= t('site.login.text.signed_with')%>:</strong></p>
+    <div class="authentications">
+      <% for authentication in @authentications %>
+        <div class="authentication">
+          <%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
+          <div class="provider"><%= authentication.provider_name %></div>
+          <div class="uid"><%= authentication.uid %></div>
+          <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+        </div>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+  <br />
+  <p><strong><%= t('site.login.text.sign_with_other')%>:</strong></p>
+<% else %>
+  <p><strong><%= t('site.login.text.sign_using')%>:</strong></p>
+<% end %>
+
+<%= render :partial => 'services' %>
+
+<div class="clear"></div>
+
+<% unless user_signed_in? %>
+  <p>
+    <strong>Don't use these services?</strong>
+    <%= link_to "Sign up", new_user_registration_path %> or
+    <%= link_to "sign in", new_user_session_path %> with a password.
+  </p>
+<% end %>

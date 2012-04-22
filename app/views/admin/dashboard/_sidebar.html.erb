@@ -1,0 +1,17 @@
+<h2><%= t('admin.options.user_managment')%></h2>
+
+<ul>
+	<li><%= link_to t('admin.users.options.manage'), admin_users_url %></li>
+</ul>
+
+<h2><%= t('admin.settings.title')%></h2>
+
+<ul>
+	<li><%= link_to t('admin.settings.options.manage', :app => configatron.site_name), admin_settings_url %></li>
+</ul>
+
+<h2><%= t('admin.announcements.title')%></h2>
+
+<ul>
+	<li><%= link_to t('admin.announcements.options.manage'), admin_announcements_url %></li>
+</ul>

@@ -1,0 +1,9 @@
+<% content_for :header do -%>
+	<%= t('.title')%>
+<% end -%>
+
+<%= simple_form_for @announcement,:url => admin_announcements_path do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f}%>
+<% end %>
+
+<%= link_to t('back'), admin_announcements_path %>

@@ -1,0 +1,125 @@
+# Ernest Bursa
+# http://ernest.bzdury.pl
+en:
+  site:
+    dashboard:
+      title: Dashboard
+    profile:
+      title: My Profile
+      details: Details
+      me: "Me"
+      profile: Profile
+      avatar_change: Change my avatar?
+      attributes:
+        language: Language
+        real_name: Name
+        location: Location
+        website: Website
+        login: Login
+        email: Email Address
+        password: Password
+        created_at: Created at
+        updated_at: Updated at
+      login:
+        new: Your new login
+        text: "Please enter your new login now. Remember it because you will need it later."
+        set: Save my login
+      actions:
+        update: Update Profile
+        update_email: Update email address
+        change_password: Change password
+        delete_account: Delete account
+        edit: Edit Profile
+        set_login: Set Login
+    login:
+      title: Login
+      text:
+        signed_with: Jesteś akutalnie zalogowany używając następujących usług
+        sign_with_other: Loguj się używając innych usług
+        sign_using: Zaloguj się używając jednej z poniższych usług
+  admin:
+    dashboard: 
+      title: Administration
+      about:
+        title: 'You are logged in as an administrator.'
+        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    settings: 
+      title: 'Settings'
+      options:
+        manage: "Manage Settings for %{app}"
+    users:
+      title: "Users"
+      options:
+        manage: "Manage user accounts"
+        new: "New User"
+        activate: "Activation"
+        suspend: "Suspend"
+        delete: "Delete"
+        roles: "Roles"
+        send_password: "Send Password"
+      show:
+        title: "User display %{login}"
+        status: "Status: %{status}"
+        grant: "Grant %{role}"
+        take: "Take %{role}"
+      index:
+        display:
+          zero: No Users
+          one: One User
+          few: %{count} users
+          other: %{count} users
+        search: Search
+        search_by: Email Address
+        filtr: Filter Users
+        options:
+          all: All Users
+          active: Active Users
+          suspended: Suspended Users
+          pending: Pending Users
+          deleted: Deleted Users
+    delayed_jobs:
+      title: "Delayed Jobs"
+      attributes:
+        id: ID
+        priority: Priority
+        attempts: Attempts
+        run_at: Runs At
+        locked_at: Locked At
+        created_at: Created At
+
+    announcements:
+      title: 'Announcements'
+      options:
+        manage: 'Manage Announcements'
+      index:
+        options:
+          new: New Option
+      new:
+        title: New Option
+      edit:
+        title: Edit Option
+    commits:
+      title: "Post-Commits"
+    options:
+      user_managment: 'User Management'
+      administration: "Adminitration"
+      my_accout: "My Account"
+  session:
+    log_in: "Login"
+    sign_up: "Sign Up"
+    log_out: "Logout"
+  options:
+    save_changes: Save Changes
+    save: Save
+    cancel: Cancel
+    destroy: Delete
+    create: Create
+    create_new: Create New
+    edit: Edit
+    edit_record: Edit Record
+  flash:
+    update_success: Entry has been updated sucessfully.
+    destroy_success: Entry has been deleted sucessfully.
+    create_success: Entry has been created sucessfully.
+    create_error: An error occured when trying to create your entry.
+    update_error: An error occured when trying to update your entry.

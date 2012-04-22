@@ -1,0 +1,28 @@
+<% content_for :header do -%>
+	<%= t('admin.announcements.title')%>
+<% end -%>
+
+<table class="index">
+  <tr>
+    <th><%= t('activerecord.attributes.announcement.headline')%></th>
+    <th><%= t('activerecord.attributes.announcement.message')%></th>
+    <th><%= t('activerecord.attributes.announcement.starts_at')%></th>
+    <th><%= t('activerecord.attributes.announcement.ends_at')%></th>
+  </tr>
+
+<% @announcements.each do |announcement| %>
+  <tr>
+    <td><%=h announcement.headline %></td>
+    <td><%=h announcement.message %></td>
+    <td><%=h announcement.starts_at %></td>
+    <td><%=h announcement.ends_at %></td>
+    <td><%= link_to t('manage.show'), admin_announcement_path(announcement) %></td>
+    <td><%= link_to t('manage.edit'), edit_admin_announcement_path(announcement) %></td>
+    <td><%= link_to t('manage.destroy'), admin_announcement_path(announcement), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to t('.options.new'), new_admin_announcement_path %>

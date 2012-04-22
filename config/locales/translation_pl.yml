@@ -1,0 +1,73 @@
+pl:
+  back: Cofnij
+  manage:
+    edit: Edytuj
+    show: Pokaż
+    destroy: Usuń
+    edited: Edytowano
+    showing: Wyświetlam
+    destroyed: Skasowano
+    forget_about_it: zapomnij o tym
+  words: 
+    back: cofnij
+    next: następny
+    previous: poprzedni
+    or: lub
+  activerecord:
+    models:
+      user: "Użytkownik"   
+      announcement: "Ogłoszenie"   
+      profile: Profil   
+      role: Rola   
+      setting: Ustawianie   
+
+    attributes:
+      user:
+        id: ID
+        email: E-mail   
+        encrypted_password: "Szyfrowane hasło"   
+        reset_password_token: "Resetowanie hasło tokena"   
+        remember_token: "Pamiętaj mnie"   
+        remember_created_at: "Token zapamiętania"   
+        current_sign_in_at: "Aktualny zalogować się na stronie"   
+        last_sign_in_at: "Ostatnio zalogowałeś się na stronie"   
+        current_sign_in_ip: Obecny znak w ip   
+        last_sign_in_ip: Ostatni znak w ip   
+        login: Login   
+        identity_url: "Url tożsamości"   
+        name: Nazwa   
+        state: Stan   
+        twitter_token: Twitter znak   
+        activated_at: Aktywowany   
+        deleted_at: "Usunięte w"   
+        roles: Uprawnienia   
+        profile: Profil   
+        admin: Administrator?
+        language: Język
+        password: Hasło
+        created_at: Utworzony
+        updated_at: Zaktualizowany
+        facebook: Facebook
+        
+      announcement:
+        headline: "Nagłówek"   
+        message: "Wiadomość"   
+        starts_at: "Zaczyna się"   
+        ends_at: Koniec 
+
+      profile:
+        real_name: "Prawdziwe imię"   
+        location: Lokalizacja   
+        website: Strona WWW   
+        user: "Użytkownik"   
+
+      role:
+        name: Nazwa   
+        users: "Użytkownicy"   
+
+      setting:
+        label: Etykieta   
+        identifier: Identyfikator   
+        description: Opis   
+        field_type: Typ pola   
+        value: "Wartość"   

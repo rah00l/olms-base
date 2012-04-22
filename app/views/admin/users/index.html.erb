@@ -1,0 +1,72 @@
+<% content_for :header do -%>
+	<%= t('admin.users.title', :app => configatron.site_name) %>
+<% end -%>
+  
+<% content_for :sidebar do -%>
+    <h2><%= t('.search') %></h2>
+	<ul>
+	    <li>
+	        <%= form_tag admin_users_search_path, :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], :type => "" , :results => 5, :placeholder =>  t('.search_by') %>
+            <%= submit_tag  t('.search'), :name => nil %>
+            <% end %>
+        </li>
+    </ul>
+    <h2><%= t('.filtr') %></h2>
+    <ul>
+		<li><%= link_to t('.options.all'), admin_users_url %></li>
+		<li><%= link_to t('.options.active'), active_admin_users_url %></li>
+		<li><%= link_to t('.options.suspended'), suspended_admin_users_url %></li>
+		<li><%= link_to t('.options.pending'), pending_admin_users_url %></li>
+		<li><%= link_to t('.options.deleted'), deleted_admin_users_url %></li>
+	</ul>
+<% end -%>
+
+<table class="index">
+  <tr>
+	<th>ID</th>
+	<th><%= t('activerecord.attributes.user.login')%></th>
+	<th><%= t('activerecord.attributes.user.email')%></th>
+	<th><%= t('activerecord.attributes.user.status')%></th>
+	<th><%= t('activerecord.attributes.user.facebook')%></th>
+	<th><%= t('activerecord.attributes.user.admin')%></th>
+  </tr>
+  
+<p><%= t('.display', :count => @users.count)%></p>
+
+<% for user in @users %>
+
+	
+  <tr>
+	<td><%= user.id %></td>
+	<td><%= link_to h(user.login || user.site_name), admin_user_url(user) %></td>
+	<td><%= user.email %></td>
+	<td><%= user.state %></td>
+	<td><%= t('misc.words.yes') if user.facebook? %></td>
+	<td><%= t('misc.words.yes') if user.admin? %></td>
+    <td class="actions">
+		<% if user.pending? %>
+			<%= link_to t('admin.users.options.activate'), activate_admin_user_url(user), :method => :put %>
+			<%= link_to t('admin.users.options.suspend'), suspend_admin_user_url(user), :method => :put %>
+			<%= link_to t('admin.users.options.delete'), admin_user_url(user), :method => :delete, :confirm => "Are you sure?" %>
+		<% elsif user.passive? %>
+			<%= link_to t('admin.users.options.activate'), activate_admin_user_url(user), :method => :put %>
+			<%= link_to t('admin.users.options.suspend'), suspend_admin_user_path(user), :method => :put %>
+			<%= link_to t('admin.users.options.delete'), admin_user_url(user), :method => :delete, :confirm => "Are you sure?" %>
+		<% elsif user.active? %>
+			<%= link_to t('admin.users.options.suspend'), suspend_admin_user_path(user), :method => :put  %>
+			<%= link_to t('admin.users.options.delete'), admin_user_url(user), :method => :delete, :confirm => "Are you sure?" %>
+		<% elsif user.suspended? %>
+			<%= link_to t('admin.users.options.unsuspend'), unsuspend_admin_user_url(user), :method => :put %>
+			<%= link_to t('admin.users.options.delete'), admin_user_url(user), :method => :delete, :confirm => "Are you sure?" %>		
+		<% end %>
+	</td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @users %>
+
+<p>
+	<%= link_to t('admin.users.options.new'), new_admin_user_path %>
+</p>
